@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import pandas as pd
-import joblib  # Changed from pickle to joblib
+import joblib 
 
 app = Flask(__name__)
 CORS(app)
 
-# Load the trained model and label encoders
 print("Loading model and label encoders...")
 model = joblib.load('naive_bayes_model.joblib')
 label_encoders = joblib.load('label_encoders.joblib')
@@ -22,7 +21,7 @@ def predict():
     
     print("Incoming data:", data)
 
-    # Validate incoming data
+   
     required_keys = ['Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD',
                      'Who completed the test', 'A1_Score', 'A2_Score', 
                      'A3_Score', 'A4_Score', 'A5_Score', 'A6_Score', 
@@ -34,7 +33,7 @@ def predict():
             return jsonify({'error': f'Missing key: {key}', 'message': 'One or more input values are invalid.'}), 400
 
     try:
-        # Transforming inputs using label encoders
+       
         sex_encoded = label_encoders['Sex'].transform([data['Sex']])[0]
         ethnicity_encoded = label_encoders['Ethnicity'].transform([data['Ethnicity']])[0]
         jaundice_encoded = label_encoders['Jaundice'].transform([data['Jaundice']])[0]
@@ -45,13 +44,13 @@ def predict():
     except ValueError as e:
         return jsonify({'error': str(e), 'message': 'One or more input values are invalid.'}), 400
 
-    # Calculate Qchat-10-Score based on input values
+   
     try:
         qchat_score = sum(int(data[f'A{i}_Score']) for i in range(1, 11))
     except ValueError:
         return jsonify({'error': 'Score values must be integers.'}), 400
 
-    # Prepare the input data with the correct feature names
+    
     input_data = {
         'A1': int(data['A1_Score']),
         'A2': int(data['A2_Score']),
@@ -72,10 +71,10 @@ def predict():
         'Who completed the test': who_completed_test_encoded
     }
 
-    # Convert input to DataFrame for prediction
+    
     input_df = pd.DataFrame([input_data])
 
-    # Predict probability and class
+    
     try:
         prediction_proba = model.predict_proba(input_df)[:, 1]
         predicted_class = model.predict(input_df)[0]
