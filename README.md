@@ -21,8 +21,8 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/repo-name.git
-   cd repo-name
+   git clone https://github.com/ayushkumar912/Toddler_Autism_Prediction.git
+   cd Toddler_Autism_Prediction
    ```
 
 2. **Create a virtual environment**:
