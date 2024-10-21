@@ -1,104 +1,133 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0 20px;
-}
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-}
+  
+        body {
+            background-image: url(https://wallpapers.com/images/thumbnail/autism-background-m0dqo0bnincb4ulv.webp);
+            font-family: "Londrina Sketch", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 30px;
+            color: #333;
+            margin: 0;
+            padding: 0 20px;
+        }
+        img{
+            position: absolute;
+            z-index: 3;
+            height: 40%;
+            top: 60%;
+            left: 80%;
+            position: fixed;
+            box-shadow: #000000 ;
+            
+        }
+        h1 {
+            text-align: center;
+            margin-top: 3%;
+            color:  #ffffff;
+            text-shadow: 5px 7px 8px rgba(0, 0, 0, 0.5);
 
-h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
-}
+        }
+        form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border:1px solid rgba(0, 0, 0, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 50px;
+        }
 
-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+        label {
+            font-size: 30px;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: rgb(98, 0, 0);
+            
+        }
+        select, input[type="number"], button {
+            width: 12%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #003c0b;
+            background-color: #003c0b;
+            color: rgb(194, 194, 95);
+            border-radius: 50px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        select:focus, input[type="number"]:focus {
+            border-color: #000000;
+            background-color: rgb(230, 81, 106);
+            color: rgb(60, 0, 70);
+            outline: none;
+            
+        }
+        .radio-group {
+            margin-top: 10px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
+        }
+        .radio-group input[type="radio"] {
+            margin: 15px;    
+            color: #000000;
 
-label {
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-}
-
-select, input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border-color 0.3s;
-}
-
-select:focus, input[type="number"]:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.radio-option {
-    margin: 8px 0;
-}
-
-.radio-option input[type="radio"] {
-    margin-right: 5px;
-}
-
-.radio-option label {
-    display: inline-block;
-    margin-right: 20px;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-#result {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #d4edda;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    display: none;
-}
-
-.error {
-    color: #dc3545;
-    font-size: 14px;
-    margin-top: 5px;
-}
+        }
+        .radio-group label {
+            
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        button {
+            display:flex ;
+            background-color: #bb9b26;
+            color: #02156ab6;
+            font-size: large;
+            font-weight: 900;
+            width: 20%  ;
+            padding-left: 7%;
+            border: none;
+            cursor: pointer;
+            margin-top: 5%;
+            margin-left: 37%;
+        }
+        button:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        h2 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        pre {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 10px auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            white-space: pre-wrap; /* Allows the text to wrap */
+            word-wrap: break-word; /* Prevents overflow */
+        }
+        .result {
+            background: #d4edda;
+            border-left: 6px solid #c3e6cb;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .percentage {
+            font-size: 20px;
+            font-weight: bold;
+            color: #155724;
+        }

@@ -1,61 +1,47 @@
-async function predict() {
-    try {
-        
-        const form = document.getElementById('autismForm');
-        const resultDiv = document.getElementById('result');
-      
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
+
+        async function predict() {
+            const data = {
+                Sex: document.getElementById('sex').value,
+                Ethnicity: document.getElementById('ethnicity').value,
+                Jaundice: document.getElementById('jaundice').value,
+                Family_mem_with_ASD: document.getElementById('family_with_asd').value,
+                "Who completed the test": document.getElementById('who_completed_test').value,
+                A1_Score: document.querySelector('input[name="a1_score"]:checked').value,
+                A2_Score: document.querySelector('input[name="a2_score"]:checked').value,
+                A3_Score: document.querySelector('input[name="a3_score"]:checked').value,
+                A4_Score: document.querySelector('input[name="a4_score"]:checked').value,
+                A5_Score: document.querySelector('input[name="a5_score"]:checked').value,
+                A6_Score: document.querySelector('input[name="a6_score"]:checked').value,
+                A7_Score: document.querySelector('input[name="a7_score"]:checked').value,
+                A8_Score: document.querySelector('input[name="a8_score"]:checked').value,
+                A9_Score: document.querySelector('input[name="a9_score"]:checked').value,
+                A10_Score: document.querySelector('input[name="a10_score"]:checked').value,
+                Age_Mons: document.getElementById('age_mons').value
+            };
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            displayResult(result);
         }
 
-    
-        const formData = {
-            sex: document.getElementById('sex').value,
-            ethnicity: document.getElementById('ethnicity').value,
-            jaundice: document.getElementById('jaundice').value,
-            family_with_asd: document.getElementById('family_with_asd').value,
-            who_completed_test: document.getElementById('who_completed_test').value,
-            age_mons: document.getElementById('age_mons').value
-        };
+        function displayResult(result) {
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = '';
 
-  
-        for (let i = 1; i <= 10; i++) {
-            const scoreKey = `a${i}_score`;
-            const selectedRadio = document.querySelector(`input[name="${scoreKey}"]:checked`);
-            if (selectedRadio) {
-                formData[scoreKey] = selectedRadio.value;
+            for (const key in result) {
+                if (result.hasOwnProperty(key)) {
+                    const percentage = (result[key] * 100).toFixed(2); 
+                    const resultDiv = document.createElement('div');
+                    resultDiv.classList.add('result');
+                    resultDiv.innerHTML = `<span class="percentage">${key}: ${percentage}%</span>`;
+                    resultContainer.appendChild(resultDiv);
+                }
             }
         }
-
-     
-        resultDiv.style.display = 'block';
-        resultDiv.textContent = 'Processing...';
-
-        const response = await fetch('/predict', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        
-      
-        resultDiv.style.display = 'block';
-        resultDiv.textContent = `Prediction: ${result.prediction}%`;
-        resultDiv.style.backgroundColor = '#d4edda';
-
-    } catch (error) {
-        console.error('Error:', error);
-        const resultDiv = document.getElementById('result');
-        resultDiv.style.display = 'block';
-        resultDiv.textContent = 'An error occurred. Please try again.';
-        resultDiv.style.backgroundColor = '#f8d7da';
-    }
-}
