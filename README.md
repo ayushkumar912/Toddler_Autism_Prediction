@@ -10,7 +10,6 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Prerequisites
 
