@@ -37,7 +37,7 @@ html, body {
 
         .dog img{
             position: absolute;
-            z-index: 3;
+            z-index: 4;
             height: 40%;
             top: 82%;
             left: 75%;
@@ -147,18 +147,17 @@ html, body {
 }
 .resultbox{
     margin-top: 15%;
-    margin-right: 10%;
+    margin-left: -30%;
     height: 10%;
     font-size: medium;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
+    padding-right: 8%;
+    width: 50%;
 }
 
 .resultbox pre{
-
-    margin-top: 28%;
-    margin-right: 30%;
+    margin-top: 10%;
+    width: 50%;
+    margin-top: 5%;
 }
 
         button {
@@ -190,15 +189,18 @@ html, body {
         h2 {
             position: absolute;
             z-index: 2;
+            padding-left: 80px;
             color: #8b8b8b;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
+        
         pre {
-            padding: 10px;
+            padding-left: -40px;
+            padding-top: 40px;
             border-radius: 5px;
-            max-width: 600px;
+            width: 30%;
             margin: 10px auto;
             white-space: pre-wrap; 
             word-wrap: break-word;
@@ -206,12 +208,13 @@ html, body {
         .result {
             background: #5d5d5d;
             border-left: 6px solid #5d5d5d;
+            margin-left: -50%;
             padding: 10px;
-            margin: 10px 0;
+            margin-top: 10px;
             border-radius: 5px;
         }
         .percentage {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
             color: #ffffff;
         }
@@ -219,8 +222,8 @@ html, body {
 
         .cloud img{
             position: absolute;
-            top: 20%;
+            top: 10.5rem;
             width: 300px;
             z-index: 1;
-            left: 68%;
+            left: 33.9rem;
         }
