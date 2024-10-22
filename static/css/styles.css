@@ -200,8 +200,8 @@ html, body {
             border-radius: 5px;
             max-width: 600px;
             margin: 10px auto;
-            white-space: pre-wrap; /* Allows the text to wrap */
-            word-wrap: break-word; /* Prevents overflow */
+            white-space: pre-wrap; 
+            word-wrap: break-word;
         }
         .result {
             background: #5d5d5d;
