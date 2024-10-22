@@ -29,12 +29,16 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 
    ```bash
    python3 -m venv .venv
+   <!-- for Windows -->
+   python -m venv .venv
    ```
 
 3. **Activate the virtual environment**:
 
    ```bash
-   source .venv/bin/activate
+   source .venv/bin/activate 
+   <!-- for Windows -->
+   .venv\Scripts\activate 
    ```
 
 4. **Install the required modules**:
@@ -49,6 +53,8 @@ To run the project, use the following command:
 
 ```bash
 python3 app.py
+<!-- for Windows -->
+python app.py
 ```
 
 ## Features

@@ -3,158 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&display=swap" rel="stylesheet">
+    <script src="../static/js/script.js"></script>
     <title>Toddler Autism Prediction</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            color: #333;
-        }
-        form {
-            background: #fff;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-size: 16px;
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
-        select, input[type="number"], button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        select:focus, input[type="number"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        .radio-group {
-            margin-top: 10px;
-        }
-        .radio-group input[type="radio"] {
-            margin-right: 5px;
-        }
-        .radio-group label {
-            display: inline-block;
-            margin-right: 15px;
-            font-weight: normal;
-            cursor: pointer;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        button:active {
-            transform: scale(0.98);
-        }
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-        }
-        pre {
-            background: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 600px;
-            margin: 10px auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            white-space: pre-wrap; /* Allows the text to wrap */
-            word-wrap: break-word; /* Prevents overflow */
-        }
-        .result {
-            background: #d4edda;
-            border-left: 6px solid #c3e6cb;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        .percentage {
-            font-size: 20px;
-            font-weight: bold;
-            color: #155724;
-        }
-    </style>
-    <script>
-        async function predict() {
-            const data = {
-                Sex: document.getElementById('sex').value,
-                Ethnicity: document.getElementById('ethnicity').value,
-                Jaundice: document.getElementById('jaundice').value,
-                Family_mem_with_ASD: document.getElementById('family_with_asd').value,
-                "Who completed the test": document.getElementById('who_completed_test').value,
-                A1_Score: document.querySelector('input[name="a1_score"]:checked').value,
-                A2_Score: document.querySelector('input[name="a2_score"]:checked').value,
-                A3_Score: document.querySelector('input[name="a3_score"]:checked').value,
-                A4_Score: document.querySelector('input[name="a4_score"]:checked').value,
-                A5_Score: document.querySelector('input[name="a5_score"]:checked').value,
-                A6_Score: document.querySelector('input[name="a6_score"]:checked').value,
-                A7_Score: document.querySelector('input[name="a7_score"]:checked').value,
-                A8_Score: document.querySelector('input[name="a8_score"]:checked').value,
-                A9_Score: document.querySelector('input[name="a9_score"]:checked').value,
-                A10_Score: document.querySelector('input[name="a10_score"]:checked').value,
-                Age_Mons: document.getElementById('age_mons').value
-            };
-
-            const response = await fetch('/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            displayResult(result);
-        }
-
-        function displayResult(result) {
-            const resultContainer = document.getElementById('result');
-            resultContainer.innerHTML = '';
-
-            for (const key in result) {
-                if (result.hasOwnProperty(key)) {
-                    const percentage = (result[key] * 100).toFixed(2); // Convert to percentage
-                    const resultDiv = document.createElement('div');
-                    resultDiv.classList.add('result');
-                    resultDiv.innerHTML = `<span class="percentage">${key}: ${percentage}%</span>`;
-                    resultContainer.appendChild(resultDiv);
-                }
-            }
-        }
-    </script>
 </head>
 <body>
     <h1>Toddler Autism Prediction</h1>
+    <img src="../static/css/1.png" alt="">
     <form onsubmit="event.preventDefault(); predict();">
-        <label for="sex">Sex:</label>
+        <label for="sex">Sex</label>
         <select id="sex" required>
             <option value="m">Male</option>
             <option value="f">Female</option>
         </select>
 
-        <label for="ethnicity">Ethnicity:</label>
+        <label for="ethnicity">Ethnicity</label>
         <select id="ethnicity" required>
             <option value="middle eastern">Middle Eastern</option>
             <option value="White European">White European</option>
@@ -168,19 +34,19 @@
             <option value="Others">Others</option>
         </select>
 
-        <label for="jaundice">Jaundice:</label>
+        <label for="jaundice">Jaundice</label>
         <select id="jaundice" required>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
 
-        <label for="family_with_asd">Family Member with ASD:</label>
+        <label for="family_with_asd">Family Member with ASD</label>
         <select id="family_with_asd" required>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
 
-        <label for="who_completed_test">Who completed the test:</label>
+        <label for="who_completed_test">Who completed the test</label>
         <select id="who_completed_test" required>
             <option value="Health Care Professional">Health Care Professional</option>
             <option value="family member">Family Member</option>
@@ -249,10 +115,11 @@
         <label for="age_mons">Age (in months):</label>
         <input type="number" id="age_mons" required>
 
+        
         <button type="submit">Predict</button>
     </form>
 
-    <h2>Prediction Result:</h2>
+    <h2>Prediction Result</h2>
     <pre id="result"></pre>
 </body>
 </html>
