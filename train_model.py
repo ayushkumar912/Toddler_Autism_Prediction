@@ -1,74 +1,188 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.naive_bayes import GaussianNB
+import numpy as np
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.naive_bayes import GaussianNB, BernoulliNB
+from sklearn.ensemble import VotingClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-import joblib  
+from sklearn.metrics import confusion_matrix, classification_report
+from imblearn.over_sampling import SMOTE
+import joblib
+import warnings
+warnings.filterwarnings('ignore')
+
+class DualBayesAutismModel:
+    def __init__(self):
+        self.label_encoders = {}
+        self.scaler = StandardScaler()
+        self.gaussian_nb = GaussianNB()
+        self.bernoulli_nb = BernoulliNB()
+        self.voting_classifier = None
+        
+    def preprocess_data(self, data):
+        """Preprocess the dataset with essential feature engineering."""
+        df = data.copy()
+        
+        # Handle missing values
+        df = df.fillna(df.mode().iloc[0])
+        
+        # Create behavioral score (sum of A1-A10)
 
 
-print("Loading dataset...")
-data = pd.read_csv("Toddler Autism dataset July 2018.csv")
 
-print("Encoding categorical variables...")
-label_encoders = {}
-categorical_columns = [
-    'Sex', 
-    'Ethnicity', 
-    'Jaundice', 
-    'Family_mem_with_ASD', 
-    'Who completed the test', 
-    'Class/ASD Traits'
-]
-
-for column in categorical_columns:
-    le = LabelEncoder()
-    data[column] = le.fit_transform(data[column])
-    label_encoders[column] = le
-print("Encoding complete.\n")
+        df['Behavioral_Score'] = df[['A1', 'A2', 'A3', 'A4', 'A5', 
+                                   'A6', 'A7', 'A8', 'A9', 'A10']].sum(axis=1)
+        
 
 
-X = data[['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'Age_Mons', 'Qchat-10-Score', 'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD', 'Who completed the test']]
-y = data['Class/ASD Traits']
 
 
-print("Splitting data into training and testing sets...")
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print(f"Training set size: {X_train.shape[0]} samples")
-print(f"Testing set size: {X_test.shape[0]} samples\n")
 
 
-print("Initializing Naive Bayes Classifier...")
-model = GaussianNB()
 
 
-print("Training the model...")
-model.fit(X_train, y_train)
-print("Model training complete.\n")
+        
+        # Encode categorical variables
+        categorical_columns = [
+            'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD',
+            'Who completed the test', 'Class/ASD Traits'
+        ]
+        
+        for column in categorical_columns:
+            le = LabelEncoder()
+            df[column] = le.fit_transform(df[column])
+            self.label_encoders[column] = le
+        
+        return df
+    
+    def prepare_features(self, df):
+        """Prepare and split features for different model types."""
+        
+        gaussian_features = [
+            'Age_Mons', 'Qchat-10-Score', 'Behavioral_Score'
+        ]
+        
+       
+        bernoulli_features = [
+            'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10',
+            'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD',
+            'Who completed the test'
+        ]
+        
 
 
-print("Making predictions on the test set...")
-y_pred = model.predict(X_test)
-
-print("\nCalculating evaluation metrics...")
-accuracy = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
-recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
-f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)
-
-for i in range(len(y_test)):
-    print(f"Sample {i+1}: Predicted: {y_pred[i]}, Actual: {y_test.iloc[i]}")
-
-print("\n===== Model Performance on Test Data =====")
-print(f"Accuracy: {accuracy:.2f}")
-print(f"Precision: {precision:.2f}")
-print(f"Recall: {recall:.2f}")
-print(f"F1-Score: {f1:.2f}")
-print("==========================================\n")
 
 
-joblib.dump(model, 'naive_bayes_model.joblib')
 
 
-joblib.dump(label_encoders, 'label_encoders.joblib')
 
-print("Model and label encoders saved successfully.")
+
+
+
+
+
+
+
+        # Scale continuous features
+        df[gaussian_features] = self.scaler.fit_transform(df[gaussian_features])
+        # Features for Gaussian NB (continuous variables)
+         # Features for Bernoulli NB (binary/categorical variables)
+        # Combine all features
+        X = df[gaussian_features + bernoulli_features]
+        y = df['Class/ASD Traits']
+        
+        return X, y
+    
+    def train_model(self, X, y):
+        """Train both models and create a voting classifier."""
+        # Apply SMOTE for balanced dataset
+        smote = SMOTE(random_state=42)
+        X_resampled, y_resampled = smote.fit_resample(X, y)
+        
+        # Split data
+        X_train, X_test, y_train, y_test = train_test_split(
+            X_resampled, y_resampled, test_size=0.2, random_state=42, stratify=y_resampled
+        )
+        
+        # Create voting classifier
+        self.voting_classifier = VotingClassifier(
+            estimators=[
+                ('gaussian_nb', self.gaussian_nb),
+                ('bernoulli_nb', self.bernoulli_nb)
+            ],
+            voting='soft'
+        )
+        
+        # Train the voting classifier
+        self.voting_classifier.fit(X_train, y_train)
+        
+        # Make predictions
+        y_pred = self.voting_classifier.predict(X_test)
+        
+        # Calculate and return metrics
+        metrics = {
+            'accuracy': accuracy_score(y_test, y_pred),
+            'precision': precision_score(y_test, y_pred, average='weighted'),
+            'recall': recall_score(y_test, y_pred, average='weighted'),
+            'f1': f1_score(y_test, y_pred, average='weighted')
+        }
+        
+        # Calculate individual model performances
+        print("\nModel Performance:")
+        print("=" * 50)
+        print("\nVoting Classifier Performance:")
+        print(classification_report(y_test, y_pred))
+        
+        # Cross-validation scores
+        cv_scores = cross_val_score(self.voting_classifier, X_resampled, y_resampled, cv=5)
+        print(f"\nCross-validation scores: {cv_scores}")
+        print(f"Average CV score: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")
+        
+        return metrics, (X_test, y_test)
+    
+    def save_model(self, path_prefix='optimized_'):
+        """Save the trained model and associated transformers."""
+        joblib.dump(self.voting_classifier, f'{path_prefix}voting_classifier.joblib')
+        joblib.dump(self.label_encoders, f'{path_prefix}label_encoders.joblib')
+        joblib.dump(self.scaler, f'{path_prefix}scaler.joblib')
+        print("Model and associated objects saved successfully.")
+    
+    def predict_single_case(self, case_data):
+        """Predict for a single case."""
+        # Preprocess the single case
+        processed_case = self.preprocess_data(pd.DataFrame([case_data]))
+        features, _ = self.prepare_features(processed_case)
+        
+        # Make prediction
+        prediction = self.voting_classifier.predict(features)
+        prediction_proba = self.voting_classifier.predict_proba(features)
+        
+        return prediction[0], prediction_proba[0]
+
+# Usage example
+if __name__ == "__main__":
+    # Load dataset
+    print("Loading dataset...")
+    data = pd.read_csv("Toddler Autism dataset July 2018.csv")
+    
+    # Initialize model
+    model = DualBayesAutismModel()
+    
+    # Preprocess data
+    print("Preprocessing data...")
+    processed_data = model.preprocess_data(data)
+    
+    # Prepare features
+    print("Preparing features...")
+    X, y = model.prepare_features(processed_data)
+    
+    # Train and evaluate
+    print("Training and evaluating model...")
+    metrics, test_data = model.train_model(X, y)
+    
+    # Save model
+    model.save_model()
+    
+    print("\nFinal Metrics:")
+    for metric, value in metrics.items():
+        print(f"{metric.capitalize()}: {value:.3f}")
