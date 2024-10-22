@@ -33,7 +33,7 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
    python3 -m venv .venv
    ```
    
-  - Windows
+   - Windows
 
    ```bash
    python -m venv .venv
