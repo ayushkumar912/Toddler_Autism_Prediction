@@ -1,73 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Playwrite GB S", cursive;
+    font-optical-sizing: auto;
+}
+
+html, body {
+    background-image: url("../css/homepage-bg.svg");
+    height: 100%;
+    width: 100%;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    background-color: #d1ebFb;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+}
 
   
-        body {
-            background-image: url(https://wallpapers.com/images/thumbnail/autism-background-m0dqo0bnincb4ulv.webp);
-            font-family: "Londrina Sketch", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 30px;
-            color: #333;
-            margin: 0;
-            padding: 0 20px;
+        .header{
+            background-color: #0086c1;
+            width: 100%;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: -0.5%;
         }
-        img{
+        .parentheader img{
+            width: 100%;
+            padding: 0%;
+            margin: 0%;
+
+        }
+
+
+        .dog img{
             position: absolute;
             z-index: 3;
             height: 40%;
-            top: 60%;
-            left: 80%;
-            position: fixed;
+            top: 82%;
+            left: 75%;
             box-shadow: #000000 ;
-            
         }
-        h1 {
+
+        .header h1 {
+            font-family: "Londrina Sketch", sans-serif;
             text-align: center;
-            margin-top: 3%;
             color:  #ffffff;
             text-shadow: 5px 7px 8px rgba(0, 0, 0, 0.5);
 
         }
+
+
+
+
+
         form {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border:1px solid rgba(0, 0, 0, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            max-width: 80%;
-            margin: 20px auto;
-            padding: 50px;
+            padding-left: 100px;  
+            padding-right: 100px;
+            padding-top: 20px;
+            margin-bottom: 40px;
+        }
+        form .opt{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 2%;
+            margin-bottom: 1%;
         }
 
-        label {
-            font-size: 30px;
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-            color: rgb(98, 0, 0);
+        .opt select{
+            border: #000000 3px solid;
+
+            margin-right: 4%;
+            margin-bottom: 1%;
+            font-size: large;
+            padding: .5%;
+            font-size: large;
             
+        }
+        .opt label{
+            margin-right: 1%;
+            margin-bottom: 1%;
+        }
+
+        .agemonth input{
+            border: #000000 3px solid;
+        }
+
+        
+
+
+        .quest .radio-group label{
+
+            font-size: 90%;
+
+
+        }
+
+
+
+        label, select {
+            font-family: "Playwrite GB S", cursive;
+            font-optical-sizing: auto;
+            font-size: 90%;
+            display: block;
+            color: #6958ca;
         }
         select, input[type="number"], button {
-            width: 12%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #003c0b;
-            background-color: #003c0b;
-            color: rgb(194, 194, 95);
-            border-radius: 50px;
-            font-size: 14px;
+            border: #000000 3px solid;
+            background-color: #47a9aa;
+            color: white;
+            border-radius: 10px;
+            border: none;
             transition: border-color 0.3s;
-        }
-        select:focus, input[type="number"]:focus {
-            border-color: #000000;
-            background-color: rgb(230, 81, 106);
-            color: rgb(60, 0, 70);
-            outline: none;
-            
+            padding: 5px;
+            font-size: medium;
+            font-weight: bold;
         }
         .radio-group {
-            margin-top: 10px;
-            font-weight: 900;
+            font-weight: 200;
+            font-size: 20px;
             display: flex;
             align-items: center;
 
@@ -84,28 +140,57 @@
             font-weight: 900;
             cursor: pointer;
         }
+
+.mainbody{
+   display: flex;
+
+}
+.resultbox{
+    margin-top: 15%;
+    margin-right: 10%;
+    height: 10%;
+    font-size: medium;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.resultbox pre{
+
+    margin-top: 28%;
+    margin-right: 30%;
+}
+
         button {
+            position: absolute;
             display:flex ;
-            background-color: #bb9b26;
-            color: #02156ab6;
+            background-color: #047a33;
+            color: #ffffff;
             font-size: large;
             font-weight: 900;
-            width: 20%  ;
-            padding-left: 7%;
+            width: 8%  ;
+            align-items: center;
+            justify-content: center;
             border: none;
             cursor: pointer;
-            margin-top: 5%;
-            margin-left: 37%;
+            border: #000000 3px solid;
+            left: 65%;
+            top: 95%;
+            border-radius: 100px;
+            height: 15%;
         }
+
         button:hover {
-            background-color: #000000;
+            background-color: #05ac48;
             color: #ffffff;
         }
         button:active {
             transform: scale(0.98);
         }
         h2 {
-            color: #ffffff;
+            position: absolute;
+            z-index: 2;
+            color: #8b8b8b;
             text-align: center;
             margin-top: 20px;
         }
@@ -115,13 +200,12 @@
             border-radius: 5px;
             max-width: 600px;
             margin: 10px auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             white-space: pre-wrap; /* Allows the text to wrap */
             word-wrap: break-word; /* Prevents overflow */
         }
         .result {
-            background: #d4edda;
-            border-left: 6px solid #c3e6cb;
+            background: #5d5d5d;
+            border-left: 6px solid #5d5d5d;
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
@@ -129,5 +213,14 @@
         .percentage {
             font-size: 20px;
             font-weight: bold;
-            color: #155724;
+            color: #ffffff;
+        }
+
+
+        .cloud img{
+            position: absolute;
+            top: 43%;
+            width: 300px;
+            z-index: 1;
+            left: 68%;
         }

@@ -7,119 +7,161 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+
     <script src="../static/js/script.js"></script>
     <title>Toddler Autism Prediction</title>
 </head>
 <body>
-    <h1>Toddler Autism Prediction</h1>
-    <img src="../static/css/1.png" alt="">
-    <form onsubmit="event.preventDefault(); predict();">
-        <label for="sex">Sex</label>
-        <select id="sex" required>
-            <option value="m">Male</option>
-            <option value="f">Female</option>
-        </select>
-
-        <label for="ethnicity">Ethnicity</label>
-        <select id="ethnicity" required>
-            <option value="middle eastern">Middle Eastern</option>
-            <option value="White European">White European</option>
-            <option value="Hispanic">Hispanic</option>
-            <option value="black">Black</option>
-            <option value="south asian">South Asian</option>
-            <option value="asian">Asian</option>
-            <option value="mixed">Mixed</option>
-            <option value="Native Indian">Native Indian</option>
-            <option value="Latino">Latino</option>
-            <option value="Others">Others</option>
-        </select>
-
-        <label for="jaundice">Jaundice</label>
-        <select id="jaundice" required>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-
-        <label for="family_with_asd">Family Member with ASD</label>
-        <select id="family_with_asd" required>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-
-        <label for="who_completed_test">Who completed the test</label>
-        <select id="who_completed_test" required>
-            <option value="Health Care Professional">Health Care Professional</option>
-            <option value="family member">Family Member</option>
-        </select>
-
-        <div class="radio-group">
-            <label>1. Does your child look at you when you call his/her name?</label><br>
-            <input type="radio" name="a1_score" value="1" required> Yes
-            <input type="radio" name="a1_score" value="0" required> No
+    <div class="parentheader">
+        <div class="header"> 
+            <h1>Toddler Autism Prediction</h1>
         </div>
+        <img src="../static/css/nav_bg.png" alt="">
+    </div>
+    
+    <div class="dog">
+        <img  src="../static/css/1.png" alt="">
+    </div>
 
-        <div class="radio-group">
-            <label>2. How easy is it for you to get eye contact with your child?</label><br>
-            <input type="radio" name="a2_score" value="1" required> Easy
-            <input type="radio" name="a2_score" value="0" required> Difficult
-        </div>
 
-        <div class="radio-group">
-            <label>3. Does your child point to indicate that he/she wants something?</label><br>
-            <input type="radio" name="a3_score" value="1" required> Yes
-            <input type="radio" name="a3_score" value="0" required> No
-        </div>
 
-        <div class="radio-group">
-            <label>4. Does your child use gestures to communicate (e.g., wave goodbye)?</label><br>
-            <input type="radio" name="a4_score" value="1" required> Yes
-            <input type="radio" name="a4_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>5. Does your child enjoy playing peek-a-boo or similar social games?</label><br>
-            <input type="radio" name="a5_score" value="1" required> Yes
-            <input type="radio" name="a5_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>6. Does your child enjoy playing with other children?</label><br>
-            <input type="radio" name="a6_score" value="1" required> Yes
-            <input type="radio" name="a6_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>7. Does your child respond when you call his/her name?</label><br>
-            <input type="radio" name="a7_score" value="1" required> Yes
-            <input type="radio" name="a7_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>8. Does your child play pretend games (e.g., feeding a doll)?</label><br>
-            <input type="radio" name="a8_score" value="1" required> Yes
-            <input type="radio" name="a8_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>9. Does your child show interest in other children?</label><br>
-            <input type="radio" name="a9_score" value="1" required> Yes
-            <input type="radio" name="a9_score" value="0" required> No
-        </div>
-
-        <div class="radio-group">
-            <label>10. Does your child enjoy playing with toys and games with others?</label><br>
-            <input type="radio" name="a10_score" value="1" required> Yes
-            <input type="radio" name="a10_score" value="0" required> No
-        </div>
-
-        <label for="age_mons">Age (in months):</label>
-        <input type="number" id="age_mons" required>
-
+    <div class="mainbody">
+        <form onsubmit="event.preventDefault(); predict();">
         
-        <button type="submit">Predict</button>
-    </form>
+            <div class="opt">
+                <label for="sex">Sex</label>
+            <select id="sex" required>
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+            </select>
+    
+            <label for="ethnicity">Ethnicity</label>
+            <select id="ethnicity" required>
+                <option value="middle eastern">Middle Eastern</option>
+                <option value="White European">White European</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="black">Black</option>
+                <option value="south asian">South Asian</option>
+                <option value="asian">Asian</option>
+                <option value="mixed">Mixed</option>
+                <option value="Native Indian">Native Indian</option>
+                <option value="Latino">Latino</option>
+                <option value="Others">Others</option>
+            </select>
+    
+            <label for="jaundice">Jaundice</label>
+            <select id="jaundice" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+    
+            <label for="family_with_asd">Family Member with ASD</label>
+            <select id="family_with_asd" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+    
+            <label for="who_completed_test">Who completed the test</label>
+            <select id="who_completed_test" required>
+                <option value="Health Care Professional">Health Care Professional</option>
+                <option value="family member">Family Member</option>
+            </select>   
+    
+            </div>
+            
+    
+            <div class="quest">
+                <div class="radio-group">
+                    <label>1. Does your child look at you when you call his/her name?</label><br>
+                    <input type="radio" name="a1_score" value="1" required> Yes
+                    <input type="radio" name="a1_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>2. How easy is it for you to get eye contact with your child?</label><br>
+                    <input type="radio" name="a2_score" value="1" required> Easy
+                    <input type="radio" name="a2_score" value="0" required> Difficult
+                </div>
+        
+                <div class="radio-group">
+                    <label>3. Does your child point to indicate that he/she wants something?</label><br>
+                    <input type="radio" name="a3_score" value="1" required> Yes
+                    <input type="radio" name="a3_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>4. Does your child use gestures to communicate (e.g., wave goodbye)?</label><br>
+                    <input type="radio" name="a4_score" value="1" required> Yes
+                    <input type="radio" name="a4_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>5. Does your child enjoy playing peek-a-boo or similar social games?</label><br>
+                    <input type="radio" name="a5_score" value="1" required> Yes
+                    <input type="radio" name="a5_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>6. Does your child enjoy playing with other children?</label><br>
+                    <input type="radio" name="a6_score" value="1" required> Yes
+                    <input type="radio" name="a6_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>7. Does your child respond when you call his/her name?</label><br>
+                    <input type="radio" name="a7_score" value="1" required> Yes
+                    <input type="radio" name="a7_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>8. Does your child play pretend games (e.g., feeding a doll)?</label><br>
+                    <input type="radio" name="a8_score" value="1" required> Yes
+                    <input type="radio" name="a8_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>9. Does your child show interest in other children?</label><br>
+                    <input type="radio" name="a9_score" value="1" required> Yes
+                    <input type="radio" name="a9_score" value="0" required> No
+                </div>
+        
+                <div class="radio-group">
+                    <label>10. Does your child enjoy playing with toys and games with others?</label><br>
+                    <input type="radio" name="a10_score" value="1" required> Yes
+                    <input type="radio" name="a10_score" value="0" required> No
+                </div>
+        
+    
+            </div>
+    
+            <div class="agemonth">
 
-    <h2>Prediction Result</h2>
-    <pre id="result"></pre>
+                <label for="age_mons">Age (in months)</label>
+                <input type="number" id="age_mons" required>
+            </div>
+            
+    
+            
+            <button type="submit">Predict</button>
+        </form>
+    
+            <div class="resultbox">
+
+                <h2>Prediction Result</h2>
+                <pre id="result"></pre>
+            </div>
+
+
+    </div>
+    
+    <div class="cloud">
+
+        <img src="../static/css/cloud.png" alt="">
+    </div>
+
+   
 </body>
 </html>
