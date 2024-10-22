@@ -142,4 +142,4 @@ def predict():
         }), 500
 logging.info("Received data for prediction.")
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5040, debug=True)
+    app.run(host='0.0.0.0', port=3000, debug=True)
