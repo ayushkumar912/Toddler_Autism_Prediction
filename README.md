@@ -18,31 +18,44 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 
 ## Installation
 
-1. **Clone the repository**:
+1. ### **Clone the repository**:
 
    ```bash
    git clone https://github.com/ayushkumar912/Toddler_Autism_Prediction.git
    cd Toddler_Autism_Prediction
    ```
 
-2. **Create a virtual environment**:
+2. ### **Create a virtual environment**:
+   
+   - macOS/Linux
 
    ```bash
    python3 -m venv .venv
-   <!-- for Windows -->
+   ```
+   
+   - Windows
+
+   ```bash
    python -m venv .venv
    ```
 
-3. **Activate the virtual environment**:
+3. ### **Activate the virtual environment**:
+
+    - macOS/Linux
 
    ```bash
    source .venv/bin/activate 
-   <!-- for Windows -->
+   ```
+
+   - Windows
+
+   ```bash
    .venv\Scripts\activate 
    ```
 
-4. **Install the required modules**:
+4. ### **Install the required modules**:
 
+  
    ```bash
    pip install -r modules.txt
    ```
@@ -51,11 +64,15 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 
 To run the project, use the following command:
 
-```bash
-python3 app.py
-<!-- for Windows -->
-python app.py
-```
+ - macOS/Linux
+  ```bash
+   python3 app.py
+  ```
+  - Windows
+  ```bash
+    python app.py
+   ```
+
 
 ## Features
 
@@ -91,4 +108,4 @@ If you want to contribute to this project, follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
