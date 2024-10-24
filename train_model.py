@@ -1,143 +1,112 @@
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.naive_bayes import GaussianNB, BernoulliNB
-from sklearn.ensemble import VotingClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.metrics import confusion_matrix, classification_report
-from imblearn.over_sampling import SMOTE
-import joblib
-import warnings
-warnings.filterwarnings('ignore')
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import joblib  # Importing joblib for saving models
+import numpy as np
 
-class DualBayesAutismModel:
-    def __init__(self):
-        self.label_encoders = {}
-        self.scaler = StandardScaler()
-        self.gaussian_nb = GaussianNB()
-        self.bernoulli_nb = BernoulliNB()
-        self.voting_classifier = None
-        
-    def preprocess_data(self, data):
-        """Preprocess the dataset with essential feature engineering."""
-        df = data.copy()
-        
-    
-        df = df.fillna(df.mode().iloc[0])
-        
-        df['Behavioral_Score'] = df[['A1', 'A2', 'A3', 'A4', 'A5', 
-                                   'A6', 'A7', 'A8', 'A9', 'A10']].sum(axis=1)
+# Load the dataset (assuming CSV format)
+data = pd.read_csv('Toddler Autism dataset July 2018.csv')
 
-        categorical_columns = [
-            'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD',
-            'Who completed the test', 'Class/ASD Traits'
-        ]
-        
-        for column in categorical_columns:
-            le = LabelEncoder()
-            df[column] = le.fit_transform(df[column])
-            self.label_encoders[column] = le
-        
-        return df
-    
-    def prepare_features(self, df):
-        """Prepare and split features for different model types."""
-        
-        gaussian_features = [
-            'Age_Mons', 'Qchat-10-Score', 'Behavioral_Score'
-        ]
-        
-       
-        bernoulli_features = [
-            'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10',
-            'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD',
-            'Who completed the test'
-        ]
+# Preprocessing: Label encoding for categorical columns
+label_encoders = {}
+categorical_cols = ['Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD']
 
-        df[gaussian_features] = self.scaler.fit_transform(df[gaussian_features])
-        X = df[gaussian_features + bernoulli_features]
-        y = df['Class/ASD Traits']
-        
-        return X, y
-    
-    def train_model(self, X, y):
-        """Train both models and create a voting classifier."""
+for col in categorical_cols:
+    le = LabelEncoder()
+    data[col] = le.fit_transform(data[col])
+    label_encoders[col] = le
 
-        smote = SMOTE(random_state=42)
-        X_resampled, y_resampled = smote.fit_resample(X, y)
+# Save label encoders to a file
+joblib.dump(label_encoders, 'optimized_label_encoders.joblib')
 
-        X_train, X_test, y_train, y_test = train_test_split(
-            X_resampled, y_resampled, test_size=0.2, random_state=42, stratify=y_resampled
-        )
+# Drop unnecessary columns
+data = data.drop(columns=['Case_No', 'Who completed the test'])
 
-        self.voting_classifier = VotingClassifier(
-            estimators=[
-                ('gaussian_nb', self.gaussian_nb),
-                ('bernoulli_nb', self.bernoulli_nb)
-            ],
-            voting='soft'
-        )
-        
-        self.voting_classifier.fit(X_train, y_train)
+# Features (X) and labels (y)
+X = data[['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'Age_Mons', 'Qchat-10-Score', 'Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD']]
+y = data['Class/ASD Traits'].apply(lambda x: 1 if x == 'Yes' else 0)
 
-        y_pred = self.voting_classifier.predict(X_test)
-        
-        metrics = {
-            'accuracy': accuracy_score(y_test, y_pred),
-            'precision': precision_score(y_test, y_pred, average='weighted'),
-            'recall': recall_score(y_test, y_pred, average='weighted'),
-            'f1': f1_score(y_test, y_pred, average='weighted')
-        }
-        
-        print("\nModel Performance:")
-        print("=" * 50)
-        print("\nVoting Classifier Performance:")
-        print(classification_report(y_test, y_pred))
-        
-        cv_scores = cross_val_score(self.voting_classifier, X_resampled, y_resampled, cv=5)
-        print(f"\nCross-validation scores: {cv_scores}")
-        print(f"Average CV score: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")
-        
-        return metrics, (X_test, y_test)
-    
-    def save_model(self, path_prefix='optimized_'):
-        """Save the trained model and associated transformers."""
-        joblib.dump(self.voting_classifier, f'{path_prefix}voting_classifier.joblib')
-        joblib.dump(self.label_encoders, f'{path_prefix}label_encoders.joblib')
-        joblib.dump(self.scaler, f'{path_prefix}scaler.joblib')
-        print("Model and associated objects saved successfully.")
-    
-    def predict_single_case(self, case_data):
-        """Predict for a single case."""
+# Split the data into train+validation (80%) and test (20%) sets
+X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        processed_case = self.preprocess_data(pd.DataFrame([case_data]))
-        features, _ = self.prepare_features(processed_case)
-        
-        prediction = self.voting_classifier.predict(features)
-        prediction_proba = self.voting_classifier.predict_proba(features)
-        
-        return prediction[0], prediction_proba[0]
+# Further split train+validation into train (70%) and validation (30%) sets
+X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size=0.3, random_state=42)
 
+# Standardize the features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_val_scaled = scaler.transform(X_val)
+X_test_scaled = scaler.transform(X_test)
 
-if __name__ == "__main__":
-    
-    print("Loading dataset...")
-    data = pd.read_csv("Toddler Autism dataset July 2018.csv")
-    
-    model = DualBayesAutismModel()
-    
-    print("Preprocessing data...")
-    processed_data = model.preprocess_data(data)
-    
-    print("Preparing features...")
-    X, y = model.prepare_features(processed_data)
-    
-    print("Training and evaluating model...")
-    metrics, test_data = model.train_model(X, y)
-    
-    model.save_model()
+# Train Model 1: Naive Bayes
+model1 = GaussianNB()
+model1.fit(X_train_scaled, y_train)
 
-    print("\nFinal Metrics:")
-    for metric, value in metrics.items():
-        print(f"{metric.capitalize()}: {value:.3f}")
+# Train Model 2: Random Forest
+model2 = RandomForestClassifier(n_estimators=100, random_state=42)
+model2.fit(X_train_scaled, y_train)
+
+# Ensemble: Voting Classifier (soft voting)
+ensemble_model = VotingClassifier(estimators=[('nb', model1), ('rf', model2)], voting='soft')
+ensemble_model.fit(X_train_scaled, y_train)
+
+# # Standardize the features
+# scaler = StandardScaler()
+# X_train_scaled = scaler.fit_transform(X_train)
+# X_val_scaled = scaler.transform(X_val)
+# X_test_scaled = scaler.transform(X_test)
+
+# Save the scaler
+joblib.dump(scaler, 'scaler.joblib')  # Save the scaler
+
+# Save the models using joblib
+joblib.dump(model1, 'gaussian_nb_model.joblib')
+joblib.dump(model2, 'random_forest_model.joblib')
+joblib.dump(ensemble_model, 'ensemble_model.joblib')
+
+# Predict probabilities on the test set
+proba_model1 = model1.predict_proba(X_test_scaled)
+proba_model2 = model2.predict_proba(X_test_scaled)
+proba_ensemble = ensemble_model.predict_proba(X_test_scaled)
+
+# Print the predicted probabilities for the test set
+print("Predicted probabilities using Naive Bayes:")
+print(proba_model1)
+
+print("\nPredicted probabilities using Random Forest:")
+print(proba_model2)
+
+print("\nPredicted probabilities using Ensemble model:")
+print(proba_ensemble)
+
+# Optional: Evaluate the models (accuracy, classification report, confusion matrix)
+accuracy_nb = accuracy_score(y_test, model1.predict(X_test_scaled))
+accuracy_rf = accuracy_score(y_test, model2.predict(X_test_scaled))
+accuracy_ensemble = accuracy_score(y_test, ensemble_model.predict(X_test_scaled))
+
+print(f"\nAccuracy of Naive Bayes: {accuracy_nb:.2f}")
+print(f"Accuracy of Random Forest: {accuracy_rf:.2f}")
+print(f"Accuracy of Ensemble model: {accuracy_ensemble:.2f}")
+
+# Print classification reports
+print("\nClassification Report for Naive Bayes:")
+print(classification_report(y_test, model1.predict(X_test_scaled)))
+
+print("Classification Report for Random Forest:")
+print(classification_report(y_test, model2.predict(X_test_scaled)))
+
+print("Classification Report for Ensemble model:")
+print(classification_report(y_test, ensemble_model.predict(X_test_scaled)))
+
+# Print confusion matrices
+print("Confusion Matrix for Naive Bayes:")
+print(confusion_matrix(y_test, model1.predict(X_test_scaled)))
+
+print("Confusion Matrix for Random Forest:")
+print(confusion_matrix(y_test, model2.predict(X_test_scaled)))
+
+print("Confusion Matrix for Ensemble model:")
+print(confusion_matrix(y_test, ensemble_model.predict(X_test_scaled)))

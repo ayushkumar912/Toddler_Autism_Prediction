@@ -1199,3 +1199,64 @@ INFO:werkzeug:127.0.0.1 - - [22/Oct/2024 19:45:27] "[36mGET /static/css/homepag
 INFO:root:Incoming data: {'Sex': 'm', 'Ethnicity': 'middle eastern', 'Jaundice': 'yes', 'Family_mem_with_ASD': 'yes', 'Who completed the test': 'Health Care Professional', 'A1_Score': 0, 'A2_Score': 0, 'A3_Score': 1, 'A4_Score': 1, 'A5_Score': 1, 'A6_Score': 0, 'A7_Score': 0, 'A8_Score': 1, 'A9_Score': 0, 'A10_Score': 1, 'Age_Mons': 2}
 INFO:root:Prediction result: {'prediction': 'May have', 'probability': '87.918%', 'gaussian_probability': '100.000%', 'bernoulli_probability': '75.836%'}
 INFO:werkzeug:127.0.0.1 - - [22/Oct/2024 19:45:45] "POST /predict HTTP/1.1" 200 -
+INFO:root:Loading models and transformers...
+ERROR:root:Error loading models/transformers: [Errno 2] No such file or directory: 'optimized_voting_classifier.joblib'
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.0.4.203:3000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Loading models and transformers...
+ERROR:root:Error loading models/transformers: [Errno 2] No such file or directory: 'optimized_voting_classifier.joblib'
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 112-702-627
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET /static/js/script.js HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET /static/css/nav_bg.png HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET /static/css/1.png HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:56] "GET /static/css/cloud.png HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:57] "GET /static/css/homepage-bg.svg HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:22:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:16] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:17] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:21] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:21] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:21] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:21] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:21] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:24] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:24] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:25] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:25] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:26] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:26] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:26] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:23:26] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:39] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:40] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:40] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:40] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:40] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "GET /static/js/script.js HTTP/1.1" 200 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[36mGET /static/css/homepage-bg.svg HTTP/1.1[0m" 304 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[36mGET /static/css/nav_bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[36mGET /static/css/1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:10.0.4.203 - - [23/Oct/2024 12:24:41] "[36mGET /static/css/cloud.png HTTP/1.1[0m" 304 -
