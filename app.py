@@ -5,27 +5,22 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load models and label encoders
 model_nb = joblib.load('gaussian_nb_model.joblib')
 model_rf = joblib.load('random_forest_model.joblib')
 ensemble_model = joblib.load('ensemble_model.joblib')
 label_encoders = joblib.load('optimized_label_encoders.joblib')
-scaler = joblib.load('scaler.joblib')  # Make sure to save your scaler as well
+scaler = joblib.load('scaler.joblib')  
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get JSON data from request
     input_data = request.get_json()
 
-    # Create a DataFrame from the input data
     df = pd.DataFrame([input_data])
 
-    # Encode categorical features using the loaded label encoders
     for col in ['Sex', 'Ethnicity', 'Jaundice', 'Family_mem_with_ASD']:
         if col in df.columns:
             df[col] = label_encoders[col].transform(df[col])
 
-    # Scale the features using the loaded scaler
     scaled_features = scaler.transform(df[['A1', 'A2', 'A3', 'A4', 'A5', 
                                             'A6', 'A7', 'A8', 'A9', 
                                             'A10', 'Age_Mons', 
@@ -33,12 +28,10 @@ def predict():
                                             'Sex', 'Ethnicity', 
                                             'Jaundice', 'Family_mem_with_ASD']])
     
-    # Get predictions
     prediction_nb = model_nb.predict(scaled_features)
     prediction_rf = model_rf.predict(scaled_features)
     prediction_ensemble = ensemble_model.predict(scaled_features)
     
-    # Return predictions
     return jsonify({
         'Naive_Bayes_Prediction': prediction_nb.tolist(),
         'Random_Forest_Prediction': prediction_rf.tolist(),
