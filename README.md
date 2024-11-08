@@ -1,112 +1,142 @@
-# Toddler Autism Prediction App
+# 🧩 Toddler Autism Prediction App 🧠
 
-The Toddler Autism Prediction App leverages machine learning to provide quick assessments of the likelihood of autism spectrum disorder (ASD) in toddlers. Designed for parents and caregivers, the app features an intuitive interface that simplifies data input and enhances user experience.
+The **Toddler Autism Prediction App** leverages machine learning to assess the likelihood of Autism Spectrum Disorder (ASD) in toddlers. Designed to be user-friendly for parents and caregivers, the app features an intuitive interface, streamlined data input, and robust privacy protections.
 
-## Table of Contents
+## 📋 Table of Contents
 
+- [Overview](#overview)
+- [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Contributors](#contributors)
 - [License](#license)
+  
+
+---
+
+## Overview
+
+Early detection of **Autism Spectrum Disorder (ASD)** can significantly improve outcomes by providing early interventions and tailored resources for children. This app utilizes a **Naive Bayes classifier** to predict the likelihood of autism in toddlers based on behavioral and developmental data. The model is designed to be **interpretable** and **accurate**, offering caregivers insights into their child’s developmental health.
+
+We began this project by exploring several key research papers related to **Graphical Models for Health Diagnosis**, including:
+
+- [Employing Bayesian Networks for the Diagnosis and Prognosis of Diseases](https://arxiv.org/abs/2304.06400)
+- [Bayesian Networks for the Diagnosis and Prognosis of Diseases: A Scoping Review](https://www.mdpi.com/2504-4990/6/2/58)
+- [Impact of Bayesian Network Model Structure on the Accuracy of Medical Diagnostic Systems](https://ali-fahmi.github.io/files/papers/paper5.pdf)
+
+Through this research, we gained foundational insights into Bayesian Networks, understanding their mathematical underpinnings, advantages, challenges, and applications in healthcare. A pivotal study, *Bayesian Networks in Healthcare: What is Preventing Their Adoption?* by Evangelia Kyrimi et al., informed our approach, especially in autism detection, where we found additional papers like *An Intelligent Bayesian Hybrid Approach to Help Autism Diagnosis* by Paulo Vitor de Campos Souza et al.
+
+## Features
+
+- **User-Friendly Interface**:
+  - Easy navigation and clear prompts for data entry.
+- **Comprehensive Data Collection**:
+  - Gathers demographic info, family history, health indicators (e.g., jaundice), and behavioral assessments.
+- **Behavioral Questionnaire**:
+  - Includes questions evaluating developmental behaviors like eye contact and social interaction.
+- **Machine Learning Predictions**:
+  - Uses a Naive Bayes classifier to analyze user input and predict ASD likelihood.
+- **Clear Results and Insights**:
+  - Provides probability-based predictions with interpretative insights.
+- **Educational Resources**:
+  - Links to information on autism signs and early detection importance.
 
 ## Prerequisites
 
-- Python 3.x installed on your machine.
+- **Python 3.x** installed on your machine.
+- Knowledge of MERN, Flask.
 - Basic knowledge of terminal commands.
 
 ## Installation
 
-1. ### **Clone the repository**:
+ 1. ### **Clone the repository**:
 
-   ```bash
-   git clone https://github.com/ayushkumar912/Toddler_Autism_Prediction.git
-   cd Toddler_Autism_Prediction
-   ```
+    ```bash
+    git clone https://github.com/ayushkumar912/Toddler_Autism_Prediction.git
+    cd Toddler_Autism_Prediction
+    ```
 
-2. ### **Create a virtual environment**:
-   
-   - macOS/Linux
-
-   ```bash
-   python3 -m venv .venv
-   ```
-   
-   - Windows
-
-   ```bash
-   python -m venv .venv
-   ```
-
-3. ### **Activate the virtual environment**:
+ 2. ### **Create a virtual environment**:
 
     - macOS/Linux
 
-   ```bash
-   source .venv/bin/activate 
-   ```
+    ```bash
+    python3 -m venv .venv
+    ```
 
-   - Windows
+    - Windows
 
-   ```bash
-   .venv\Scripts\activate 
-   ```
+    ```bash
+    python -m venv .venv
+    ```
 
-4. ### **Install the required modules**:
+ 3. ### **Activate the virtual environment**:
 
-  
-   ```bash
-   pip install -r modules.txt
-   ```
+     - macOS/Linux
 
-## Usage
+    ```bash
+    source .venv/bin/activate 
+    ```
 
-To run the project, use the following command:
+    - Windows
 
+    ```bash
+    .venv\Scripts\activate 
+    ```
+
+ 4. ### **Install the required modules**:
+
+
+    ```bash
+    pip install -r modules.txt
+    ```
+
+ ## Usage
+
+ To run the project, use the following command:
  - macOS/Linux
-  ```bash
-   python3 app.py
-  ```
-  - Windows
-  ```bash
-    python app.py
+   ```bash
+    python3 app.py
    ```
+ - Windows
+   ```bash
+     python app.py
+    ```
+   
+## Methodology
 
+1. **Data Collection and Preparation**:
+    - We used an autism screening dataset from [Kaggle](https://www.kaggle.com/datasets/fabdelja/autism-screening-for-toddlers). We cleaned and     preprocessed the data, addressing missing values and normalizing attributes.
+3. **Modeling with Naive Bayes**:
+    - Our initial classifier was Naive Bayes, chosen for its simplicity and effectiveness in handling probabilistic predictions. We also experimented     with **Random Forest** and **Ensemble Models** for comparison.
+4. **Frontend Implementation**:
+    - To showcase the Naive Bayes classifier, we built a basic frontend using **HTML, CSS, and Vanilla JS**.
+5. **Testing and Evaluation**:
+    - We compared model accuracy across Naive Bayes, Random Forest, and Ensemble Models to determine the most reliable predictor. 
+6. The whole project can be viewed on this repository.
 
-## Features
+## Results
 
-- **User-Friendly Interface**: Easy-to-navigate design ensures seamless data entry.
+The app provides **probabilistic predictions** with an emphasis on **interpretability**, helping caregivers understand which factors significantly influence autism likelihood.
 
-- **Comprehensive Data Collection**: Users input demographic information, health indicators (e.g., jaundice), family history of ASD, and behavioral assessments through structured questionnaires.
+## Additional References and Resources
 
-- **Behavioral Questionnaire**: Evaluates key developmental behaviors, such as eye contact and social interaction, to provide a holistic view of the child's progress.
+We referred to a wide range of resources throughout the project, including:
+- [QCHAT-10 Autism Survey for Toddlers](https://www.autismalert.org/uploads/PDF/SCREENING--AUTISM--QCHAT-10%20Question%20Autism%20Survey%20for%20Toddlers.pdf)
+- [Kaggle Learning Modules](https://www.kaggle.com/learn)
+- [Machine Learning Tutorial on YouTube](https://www.youtube.com/watch?v=i_LwzRVP7bg)
+- [ASD Tests Online Resource](https://www.asdtests.com/)
 
-- **Machine Learning Predictions**: Uses a Naive Bayes model trained on historical data to analyze inputs and predict the likelihood of ASD, offering immediate feedback on results.
-
-- **Clear Results and Insights**: Displays the predicted likelihood of autism along with probability scores to aid interpretation.
-
-- **Error Handling**: Ensures all required fields are completed accurately, providing users with informative prompts for corrections.
-
-- **Privacy and Security**: Protects user data with a focus on privacy, ensuring no personal information is stored beyond the prediction process.
-
-- **Responsive Design**: Compatible with various devices for a consistent experience on smartphones, tablets, and desktops.
-
-- **Educational Resources**: Offers links to valuable information about autism signs and the importance of early detection.
-
-**Conclusion**: The Toddler Autism Prediction App is a powerful tool for early autism detection, empowering caregivers to gain insights into their child's developmental health while promoting timely intervention and awareness.
-
-## Contributing
-
-If you want to contribute to this project, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes and commit them (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a pull request.
+##  Contributors
+- **Aninda Paul**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll No: **202211001**
+- **Ayush Kumar**&nbsp;&nbsp;&nbsp;&nbsp;Roll No: **202211008**
+- **Devrikh Jatav**&nbsp;&nbsp;&nbsp;Roll No: **202211018**
+- **Inarat Hussain**&nbsp;&nbsp;Roll No: **202211030**
 
 ## License
 
-This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **Apache License**. See the [LICENSE](LICENSE) file for details.
 
+--- 
