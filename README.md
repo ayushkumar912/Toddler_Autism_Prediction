@@ -22,6 +22,8 @@ Early detection of **Autism Spectrum Disorder (ASD)** can significantly improve 
 
 We began this project by exploring several key research papers related to **Graphical Models for Health Diagnosis**, including:
 
+- [Detection of Autism Spectrum Disorder in Children Using Machine Learning Techniques](https://link.springer.com/article/10.1007/s42979-021-00776-5)
+- [An accessible and efficient autism screening method for behavioural data and predictive analyses](https://journals.sagepub.com/doi/10.1177/1460458218796636)
 - [Employing Bayesian Networks for the Diagnosis and Prognosis of Diseases](https://arxiv.org/abs/2304.06400)
 - [Bayesian Networks for the Diagnosis and Prognosis of Diseases: A Scoping Review](https://www.mdpi.com/2504-4990/6/2/58)
 - [Impact of Bayesian Network Model Structure on the Accuracy of Medical Diagnostic Systems](https://ali-fahmi.github.io/files/papers/paper5.pdf)
