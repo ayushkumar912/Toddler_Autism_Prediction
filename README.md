@@ -26,9 +26,10 @@ We began this project by exploring several key research papers related to **Grap
 - [An accessible and efficient autism screening method for behavioural data and predictive analyses](https://journals.sagepub.com/doi/10.1177/1460458218796636)
 - [Employing Bayesian Networks for the Diagnosis and Prognosis of Diseases](https://arxiv.org/abs/2304.06400)
 - [Bayesian Networks for the Diagnosis and Prognosis of Diseases: A Scoping Review](https://www.mdpi.com/2504-4990/6/2/58)
+- [An Intelligent Bayesian Hybrid Approach to Help Autism Diagnosis* by Paulo Vitor de Campos Souza et al](https://link.springer.com/article/10.1007/s00500-021-05877-0)
 - [Impact of Bayesian Network Model Structure on the Accuracy of Medical Diagnostic Systems](https://ali-fahmi.github.io/files/papers/paper5.pdf)
 
-Through this research, we gained foundational insights into Bayesian Networks, understanding their mathematical underpinnings, advantages, challenges, and applications in healthcare. A pivotal study, *Bayesian Networks in Healthcare: What is Preventing Their Adoption?* by Evangelia Kyrimi et al., informed our approach, especially in autism detection, where we found additional papers like *An Intelligent Bayesian Hybrid Approach to Help Autism Diagnosis* by Paulo Vitor de Campos Souza et al.
+Through this research, we gained foundational insights into Bayesian Networks, understanding their mathematical underpinnings, advantages, challenges, and applications in healthcare.One of the pivotal study, *[Detection of Autism Spectrum Disorder in Children Using Machine Learning Techniques](https://link.springer.com/article/10.1007/s42979-021-00776-5)*.
 
 ## Features
 
