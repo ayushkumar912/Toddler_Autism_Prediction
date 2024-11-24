@@ -12,7 +12,7 @@ The Toddler Autism Prediction App leverages machine learning to provide quick as
 - [License](#license)
 
 ## Prerequisites
-
+- **Reference**: [Ensemble Models](https://aryanbajaj13.medium.com/ensemble-models-how-to-make-better-predictions-by-combining-multiple-models-with-python-codes-6ac54403414e)
 - Python 3.x installed on your machine.
 - Basic knowledge of terminal commands.
 
