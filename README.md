@@ -112,4 +112,3 @@ If you want to contribute to this project, follow these steps:
 ## License
 
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
-.......................................................................................................
