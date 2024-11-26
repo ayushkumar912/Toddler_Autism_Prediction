@@ -40,21 +40,20 @@ model1 = GaussianNB()
 model1.fit(X_train_scaled, y_train)
 
 
-model2 = RandomForestClassifier(n_estimators=100, random_state=42)
+model2 = RandomForestClassifier( n_estimators=30,  
+        max_depth=7, 
+        min_samples_split=10, 
+        min_samples_leaf=6, 
+        max_features='sqrt',  
+        bootstrap=True, 
+        class_weight='balanced', 
+        criterion='entropy',
+        random_state=42)
 model2.fit(X_train_scaled, y_train)
 
 
-ensemble_model = VotingClassifier(estimators=[('nb', model1), ('rf', model2)], voting='soft')
+ensemble_model = VotingClassifier(estimators=[('nb', model1), ('rf', model2)], voting='soft',weights=[1,0.6])
 ensemble_model.fit(X_train_scaled, y_train)
-
-# # Standardize the features
-# scaler = StandardScaler()
-# X_train_scaled = scaler.fit_transform(X_train)
-# X_val_scaled = scaler.transform(X_val)
-# X_test_scaled = scaler.transform(X_test)
-
-
-joblib.dump(scaler, 'scaler.joblib')  
 
 joblib.dump(model1, 'gaussian_nb_model.joblib')
 joblib.dump(model2, 'random_forest_model.joblib')
