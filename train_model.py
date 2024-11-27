@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import joblib  
-import numpy as np
+
 
 data = pd.read_csv('Toddler Autism dataset July 2018.csv')
 
@@ -42,12 +42,7 @@ model1.fit(X_train_scaled, y_train)
 
 model2 = RandomForestClassifier( n_estimators=30,  
         max_depth=7, 
-        min_samples_split=10, 
-        min_samples_leaf=6, 
-        max_features='sqrt',  
-        bootstrap=True, 
-        class_weight='balanced', 
-        criterion='entropy',
+        min_samples_leaf=6,   
         random_state=42)
 model2.fit(X_train_scaled, y_train)
 
