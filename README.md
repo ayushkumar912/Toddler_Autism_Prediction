@@ -108,7 +108,7 @@ Through this research, we gained foundational insights into Bayesian Networks, u
      python app.py
     ```
    
-## Build and Run Docker Container
+ ## Build and Run Docker Container
  1. ### **Build the Docker image**:
     ```bash
     docker build -t flask-app .
@@ -116,11 +116,12 @@ Through this research, we gained foundational insights into Bayesian Networks, u
 
 
  2. ### **Run the container**:
-  ```bash
-  docker run -p 80:80 flask-app
+    ```bash
+       docker run -p 80:80 flask-app
     ```
   
-## Methodology
+
+  ## Methodology
 
 1. **Data Collection and Preparation**:
     - We used an autism screening dataset from [Kaggle](https://www.kaggle.com/datasets/fabdelja/autism-screening-for-toddlers). We cleaned and     preprocessed the data, addressing missing values and normalizing attributes.
