@@ -108,6 +108,18 @@ Through this research, we gained foundational insights into Bayesian Networks, u
      python app.py
     ```
    
+## Build and Run Docker Container
+ 1. ### **Build the Docker image**:
+    ```bash
+    docker build -t flask-app .
+    ```
+
+
+ 2. ### **Run the container**:
+  ```bash
+  docker run -p 80:80 flask-app
+    ```
+  
 ## Methodology
 
 1. **Data Collection and Preparation**:
